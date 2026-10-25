@@ -4,7 +4,7 @@ Reusable Android library modules with a demo and a buildable starter. Open this 
 
 ## Current scope
 
-All library modules have Android build files, namespaces, manifests, resources, consumer rules, main/test/androidTest source sets, and Maven publications. Shared theme, buttons, cards, top bar, FAB, dismiss-only snackbar, arbitrary-content bottom sheet, confirmation dialog, and shell are implemented. Typed navigation, a latest-pending-request coordinator, and a lifecycle-aware UI handler are also implemented. The demo exercises component interactions and ViewModel-driven navigation. Configuration, telemetry, storage, billing, Firebase adapters, and testing utilities are scaffolds, not implemented services. Deep links and notifications are deferred. No Firebase project or credentials are required to build. No artifacts have been uploaded remotely.
+All library modules have Android build files, namespaces, manifests, resources, consumer rules, main/test/androidTest source sets, and Maven publications. Shared theme, buttons, cards, top bar, FAB, dismiss-only snackbar, arbitrary-content bottom sheet, confirmation dialog, and shell are implemented. Typed navigation, a latest-pending-request coordinator, and a lifecycle-aware UI handler are also implemented. The demo exercises component interactions and ViewModel-driven navigation. Typed Preferences DataStore storage and an in-memory testing implementation are also available. Configuration, telemetry, billing, and Firebase adapters remain scaffolds. Deep links and notifications are deferred. No Firebase project or credentials are required to build. No artifacts have been uploaded remotely.
 
 The existing `app` scaffold was moved to `demo-app`, preserving its application ID, resources, and tests. The missing launcher activity was supplied.
 
@@ -27,7 +27,7 @@ The last command publishes libraries locally to `build/maven-repository` for ver
 - `libraries:app-shell`: root scaffold, snackbar host, and lifecycle-aware Navigation Compose handler; depends on UI and navigation.
 - `libraries:config`: configuration contracts and session policies.
 - `libraries:telemetry`: vendor-independent analytics/crash contracts.
-- `libraries:storage`: portable backup/import/export infrastructure.
+- `libraries:storage`: typed local preferences, atomic updates, and DataStore integration.
 - `libraries:billing`: purchase and entitlement infrastructure.
 - `integrations:firebase-config`: optional adapter depending on config.
 - `integrations:firebase-telemetry`: optional adapter depending on telemetry.

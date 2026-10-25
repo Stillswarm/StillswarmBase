@@ -37,6 +37,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":libraries:storage"))
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.kotlinx.serialization.core)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.compose.material.icons.extended)

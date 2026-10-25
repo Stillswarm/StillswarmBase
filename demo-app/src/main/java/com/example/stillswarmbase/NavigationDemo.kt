@@ -56,7 +56,7 @@ internal fun NavigationDemo() {
             composable<Gallery>(
                 content = {
                     val model = viewModel(initializer = { NavigationDemoViewModel(coordinator) })
-                    ComponentDemo(onOpenNavigationDemo = model::openEntry)
+                    PersistentComponentDemo(onOpenNavigationDemo = model::openEntry)
                 }
             )
             composable<NavigationDetails>(

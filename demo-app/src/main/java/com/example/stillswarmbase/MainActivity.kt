@@ -42,9 +42,12 @@ class MainActivity : ComponentActivity() {
 internal fun ComponentDemo(
     initialDark: Boolean = isSystemInDarkTheme(),
     onOpenNavigationDemo: () -> Unit = {},
+    initialBranded: Boolean = false,
+    onDarkChanged: (Boolean) -> Unit = {},
+    onBrandedChanged: (Boolean) -> Unit = {},
 ) {
     var dark by rememberSaveable { mutableStateOf(initialDark) }
-    var branded by rememberSaveable { mutableStateOf(false) }
+    var branded by rememberSaveable { mutableStateOf(initialBranded) }
     var loading by remember { mutableStateOf(false) }
     var showSheet by rememberSaveable { mutableStateOf(false) }
     var showDelete by rememberSaveable { mutableStateOf(false) }
@@ -139,17 +142,20 @@ internal fun ComponentDemo(
                             Toggle(
                                 label = "Dark appearance",
                                 checked = dark,
-                                onCheckedChange = { dark = it },
+                                onCheckedChange = {
+                                    dark = it
+                                    onDarkChanged(it)
+                                },
                             )
                             Toggle(
                                 label = "App colour override",
                                 checked = branded,
-                                onCheckedChange = { branded = it },
+                                onCheckedChange = {
+                                    branded = it
+                                    onBrandedChanged(it)
+                                },
                             )
-                            InlineButton(
-                                text = "Try navigation",
-                                onClick = onOpenNavigationDemo,
-                            )
+                            InlineButton(text = "Try navigation", onClick = onOpenNavigationDemo)
                             Text(text = "Buttons", style = MaterialTheme.typography.titleMedium)
                             SuperButton(
                                 text = "Save changes",
@@ -273,7 +279,10 @@ internal fun ComponentDemo(
                                                 )
                                                 InlineButton(
                                                     text = "Reset app colours",
-                                                    onClick = { branded = false },
+                                                    onClick = {
+                                                        branded = false
+                                                        onBrandedChanged(false)
+                                                    },
                                                 )
                                             },
                                         )

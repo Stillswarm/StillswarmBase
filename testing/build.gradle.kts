@@ -8,6 +8,8 @@ android {
 }
 
 dependencies {
+    api(project(":libraries:storage"))
+    testImplementation(libs.kotlinx.coroutines.test)
     api(project(":libraries:config"))
     api(project(":libraries:telemetry"))
     api(project(":libraries:billing"))
