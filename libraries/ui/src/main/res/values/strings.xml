@@ -1,2 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources />
+<resources>
+    <string name="stillswarm_cancel">Cancel</string>
+    <string name="stillswarm_dismiss_notification">Dismiss notification</string>
+</resources>

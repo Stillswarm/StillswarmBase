@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.compose.material.icons.extended)
     implementation(project(":libraries:ui"))
     implementation(project(":libraries:app-shell"))
     implementation(platform(libs.androidx.compose.bom))

@@ -1,0 +1,19 @@
+<resources>
+    <dimen name="stillswarm_xxsmall">4dp</dimen>
+    <dimen name="stillswarm_xsmall">8dp</dimen>
+    <dimen name="stillswarm_small">12dp</dimen>
+    <dimen name="stillswarm_medium">16dp</dimen>
+    <dimen name="stillswarm_large">20dp</dimen>
+    <dimen name="stillswarm_xlarge">24dp</dimen>
+    <dimen name="stillswarm_xxlarge">28dp</dimen>
+    <dimen name="stillswarm_none">0dp</dimen>
+    <dimen name="stillswarm_border_width">1dp</dimen>
+    <dimen name="stillswarm_progress_stroke_width">2dp</dimen>
+    <dimen name="stillswarm_progress_size">18dp</dimen>
+    <dimen name="stillswarm_dialog_icon_size">36dp</dimen>
+    <dimen name="stillswarm_touch_target_size">48dp</dimen>
+    <dimen name="stillswarm_button_height">52dp</dimen>
+    <dimen name="stillswarm_fab_size">56dp</dimen>
+    <dimen name="stillswarm_dialog_max_width">560dp</dimen>
+    <dimen name="stillswarm_fab_content_clearance">80dp</dimen>
+</resources>

@@ -4,7 +4,7 @@ Reusable Android library modules with a demo and a buildable starter. Open this 
 
 ## Current scope
 
-All library modules have Android build files, namespaces, manifests, resources, consumer rules, main/test/androidTest source sets, and Maven publications. Shared theme and shell are minimal working components. Configuration, navigation, telemetry, storage, billing, Firebase adapters, and testing utilities are scaffolds, not implemented services. No Firebase project or credentials are required to build. No artifacts have been uploaded remotely.
+All library modules have Android build files, namespaces, manifests, resources, consumer rules, main/test/androidTest source sets, and Maven publications. Shared theme, buttons, cards, top bar, FAB, dismiss-only snackbar, arbitrary-content bottom sheet, confirmation dialog, and shell are implemented. The demo exercises their states and interactions. Configuration, navigation, telemetry, storage, billing, Firebase adapters, and testing utilities are scaffolds, not implemented services. No Firebase project or credentials are required to build. No artifacts have been uploaded remotely.
 
 The existing `app` scaffold was moved to `demo-app`, preserving its application ID, resources, and tests. The missing launcher activity was supplied.
 

@@ -1,0 +1,13 @@
+---
+description: Kotlin call formatting and foundation UI conventions
+globs: "**/*.kt"
+alwaysApply: false
+---
+
+# Kotlin call-site conventions
+
+For Kotlin functions/constructors with more than two parameters, name every supplied argument (`parameterName = value`), including `modifier`, and place each argument on its own line. Apply this to production code, demo code, and tests. Prefer named composable content arguments as well. Java methods and varargs that Kotlin cannot call with named arguments retain positional syntax.
+
+Use resource-backed `Dimens` tokens instead of raw dp literals. The spacing scale is xxsmall=4dp, xsmall=8dp, small=12dp, medium=16dp, large=20dp, xlarge=24dp, xxlarge=28dp. Add purpose-named dimension resources for component measurements outside the scale.
+
+Do not invent an icon when an optional icon slot is null. Use Material icons in app modules. Keep dynamic wallpaper colours disabled.
