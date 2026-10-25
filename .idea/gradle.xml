@@ -3,14 +3,37 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/build-logic" name="stillswarm-build-logic">
+                <projects>
+                  <project path="$PROJECT_DIR$/build-logic" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/build-logic" />
+            <option value="$PROJECT_DIR$/demo-app" />
+            <option value="$PROJECT_DIR$/integrations" />
+            <option value="$PROJECT_DIR$/integrations/firebase-config" />
+            <option value="$PROJECT_DIR$/integrations/firebase-telemetry" />
             <option value="$PROJECT_DIR$/libraries" />
+            <option value="$PROJECT_DIR$/libraries/app-shell" />
+            <option value="$PROJECT_DIR$/libraries/billing" />
+            <option value="$PROJECT_DIR$/libraries/config" />
+            <option value="$PROJECT_DIR$/libraries/navigation" />
+            <option value="$PROJECT_DIR$/libraries/storage" />
+            <option value="$PROJECT_DIR$/libraries/telemetry" />
             <option value="$PROJECT_DIR$/libraries/ui" />
+            <option value="$PROJECT_DIR$/starter-template" />
+            <option value="$PROJECT_DIR$/testing" />
           </set>
         </option>
       </GradleProjectSettings>

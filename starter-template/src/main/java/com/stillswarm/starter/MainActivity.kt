@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import com.stillswarm.base.ui.Dimens
 import com.stillswarm.base.shell.StillswarmAppShell
 import com.stillswarm.base.ui.StillswarmTheme
 
@@ -20,9 +20,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             StillswarmTheme {
                 StillswarmAppShell { padding ->
-                    Column(Modifier.padding(padding).padding(24.dp)) {
+                    Column(Modifier.padding(padding).padding(Dimens.dp24)) {
                         Text("Your next app", style = MaterialTheme.typography.headlineSmall)
-                        Text("Replace this screen with your first feature.", modifier = Modifier.padding(top = 16.dp))
+                        Text("Replace this screen with your first feature.", modifier = Modifier.padding(top = Dimens.dp16))
                     }
                 }
             }

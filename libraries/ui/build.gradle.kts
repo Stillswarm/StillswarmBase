@@ -10,9 +10,9 @@ android {
 }
 
 dependencies {
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.ui)
+    api(platform(libs.androidx.compose.bom))
+    api(libs.androidx.compose.material3)
+    api(libs.androidx.compose.ui)
     debugImplementation(libs.androidx.compose.ui.tooling)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
