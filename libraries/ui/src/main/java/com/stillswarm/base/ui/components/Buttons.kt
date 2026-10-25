@@ -42,9 +42,11 @@ fun SuperButton(
         colors =
             ButtonDefaults.buttonColors(
                 disabledContainerColor =
-                    if (loading) scheme.primary else scheme.onSurface.copy(alpha = .12f),
+                    if (loading) scheme.surfaceContainerHighest
+                    else scheme.onSurface.copy(alpha = .12f),
                 disabledContentColor =
-                    if (loading) scheme.onPrimary else scheme.onSurface.copy(alpha = .38f),
+                    if (loading) scheme.onSurfaceVariant
+                    else scheme.onSurface.copy(alpha = .38f),
             ),
         content = {
             ButtonContent(
@@ -78,7 +80,7 @@ fun InlineButton(
         colors =
             ButtonDefaults.textButtonColors(
                 disabledContentColor =
-                    if (state == ButtonState.Loading) MaterialTheme.colorScheme.primary
+                    if (state == ButtonState.Loading) MaterialTheme.colorScheme.onSurfaceVariant
                     else MaterialTheme.colorScheme.onSurface.copy(alpha = .38f)
             ),
         content = {
