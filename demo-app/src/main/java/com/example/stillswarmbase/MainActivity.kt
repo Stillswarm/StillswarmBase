@@ -33,13 +33,16 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent { ComponentDemo() }
+        setContent { NavigationDemo() }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ComponentDemo(initialDark: Boolean = isSystemInDarkTheme()) {
+internal fun ComponentDemo(
+    initialDark: Boolean = isSystemInDarkTheme(),
+    onOpenNavigationDemo: () -> Unit = {},
+) {
     var dark by rememberSaveable { mutableStateOf(initialDark) }
     var branded by rememberSaveable { mutableStateOf(false) }
     var loading by remember { mutableStateOf(false) }
@@ -142,6 +145,10 @@ private fun ComponentDemo(initialDark: Boolean = isSystemInDarkTheme()) {
                                 label = "App colour override",
                                 checked = branded,
                                 onCheckedChange = { branded = it },
+                            )
+                            InlineButton(
+                                text = "Try navigation",
+                                onClick = onOpenNavigationDemo,
                             )
                             Text(text = "Buttons", style = MaterialTheme.typography.titleMedium)
                             SuperButton(

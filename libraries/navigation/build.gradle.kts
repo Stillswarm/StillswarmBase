@@ -8,6 +8,9 @@ android {
 }
 
 dependencies {
+    api(libs.kotlinx.coroutines.core)
+    api(libs.androidx.lifecycle.viewmodel)
+    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

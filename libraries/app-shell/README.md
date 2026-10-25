@@ -1,7 +1,13 @@
-# app-shell
-
-Root UI scaffold and future lifecycle-scoped navigation/snackbar coordination.
+# App shell
 
 Artifact: `com.stillswarm.base:foundation-app-shell:0.1.0-SNAPSHOT`.
 
-This module is scaffolded; feature implementation is a separate step. Kotlin sources belong under `src/main/java`, alongside the package declaration. Unit and device test source sets are ready.
+`StillswarmAppShell` provides the Material scaffold and shared snackbar host.
+`NavigationHandler` binds one Activity-scoped `NavigationCoordinator` to an
+app-owned `NavHostController`, executing requests only while RESUMED.
+
+Install the handler once beside your `NavHost`, outside individual destinations.
+The app registers typed routes and chooses its start destination and transitions.
+The handler does not construct the graph, own business state, or process intents.
+Navigation Compose is exposed as an API dependency for apps building their graphs.
+See the navigation module README and demo app for the complete wiring.

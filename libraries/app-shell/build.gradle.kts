@@ -10,6 +10,8 @@ android {
 }
 
 dependencies {
+    api(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     api(project(":libraries:ui"))
     api(project(":libraries:navigation"))
     implementation(platform(libs.androidx.compose.bom))
