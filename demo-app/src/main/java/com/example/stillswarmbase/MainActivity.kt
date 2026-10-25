@@ -42,6 +42,7 @@ class MainActivity : ComponentActivity() {
 internal fun ComponentDemo(
     initialDark: Boolean = isSystemInDarkTheme(),
     onOpenNavigationDemo: () -> Unit = {},
+    onOpenRoomDemo: () -> Unit = {},
     initialBranded: Boolean = false,
     onDarkChanged: (Boolean) -> Unit = {},
     onBrandedChanged: (Boolean) -> Unit = {},
@@ -156,6 +157,10 @@ internal fun ComponentDemo(
                                 },
                             )
                             InlineButton(text = "Try navigation", onClick = onOpenNavigationDemo)
+                            InlineButton(
+                                text = "Try Room storage",
+                                onClick = onOpenRoomDemo,
+                            )
                             Text(text = "Buttons", style = MaterialTheme.typography.titleMedium)
                             SuperButton(
                                 text = "Save changes",

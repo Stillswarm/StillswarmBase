@@ -27,6 +27,7 @@ The last command publishes libraries locally to `build/maven-repository` for ver
 - `libraries:app-shell`: root scaffold, snackbar host, and lifecycle-aware Navigation Compose handler; depends on UI and navigation.
 - `libraries:config`: configuration contracts and session policies.
 - `libraries:telemetry`: vendor-independent analytics/crash contracts.
+- `libraries:storage-room`: optional Room BaseDao; app-owned database and query example in demo-app.
 - `libraries:storage`: typed local preferences, atomic updates, and DataStore integration.
 - `libraries:billing`: purchase and entitlement infrastructure.
 - `integrations:firebase-config`: optional adapter depending on config.

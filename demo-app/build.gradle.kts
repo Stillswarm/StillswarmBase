@@ -1,4 +1,6 @@
 plugins {
+    alias(libs.plugins.room)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -36,7 +38,13 @@ android {
     }
 }
 
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
 dependencies {
+    implementation(project(":libraries:storage-room"))
+    ksp(libs.androidx.room.compiler)
     implementation(project(":libraries:storage"))
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.kotlinx.serialization.core)

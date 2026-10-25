@@ -30,6 +30,7 @@
             <option value="$PROJECT_DIR$/libraries/config" />
             <option value="$PROJECT_DIR$/libraries/navigation" />
             <option value="$PROJECT_DIR$/libraries/storage" />
+            <option value="$PROJECT_DIR$/libraries/storage-room" />
             <option value="$PROJECT_DIR$/libraries/telemetry" />
             <option value="$PROJECT_DIR$/libraries/ui" />
             <option value="$PROJECT_DIR$/starter-template" />

@@ -24,13 +24,18 @@ import com.stillswarm.base.ui.StillswarmBaseTheme
 import com.stillswarm.base.ui.components.AppTopBar
 import com.stillswarm.base.ui.components.InlineButton
 import kotlinx.serialization.Serializable
+import com.example.stillswarmbase.room.RoomDemoScreen
 
 @Serializable internal data object Gallery : Destination
+
+@Serializable internal data object RoomDemo : Destination
 
 @Serializable internal data class NavigationDetails(val entryId: String) : Destination
 
 internal class NavigationDemoViewModel(private val navigator: Navigator) : ViewModel() {
     fun openEntry() = navigator.navigate(NavigationDetails(entryId = "sample-entry"))
+
+    fun openRoom() = navigator.navigate(RoomDemo)
 
     fun back() = navigator.back()
 
@@ -56,8 +61,11 @@ internal fun NavigationDemo() {
             composable<Gallery>(
                 content = {
                     val model = viewModel(initializer = { NavigationDemoViewModel(coordinator) })
-                    PersistentComponentDemo(onOpenNavigationDemo = model::openEntry)
+                    PersistentComponentDemo(onOpenNavigationDemo = model::openEntry, onOpenRoomDemo = model::openRoom)
                 }
+            )
+            composable<RoomDemo>(
+                content = { RoomDemoScreen(onBack = coordinator::back) },
             )
             composable<NavigationDetails>(
                 content = { entry ->
