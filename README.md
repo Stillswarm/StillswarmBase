@@ -36,4 +36,4 @@ The last command publishes libraries locally to `build/maven-repository` for ver
 - `testing`: test-only utilities depending on config, telemetry, and billing.
 - `build-logic`: included Gradle build supplying shared Android library and publication defaults.
 
-Artifacts use `com.stillswarm.base:foundation-<module-name>:0.1.2`. Group and version are configurable in `gradle.properties`. Kotlin files can live under `src/main/java`; the package-info files keep empty package/source-set directories visible and versioned without fake implementations.
+Artifacts use `com.stillswarm.base:foundation-<module-name>:0.1.3`. Group and version are configurable in `gradle.properties`. Kotlin files can live under `src/main/java`; the package-info files keep empty package/source-set directories visible and versioned without fake implementations.

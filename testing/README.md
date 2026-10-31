@@ -2,7 +2,7 @@
 
 Shared test fakes and assertions, consumed using testImplementation.
 
-Artifact: `com.stillswarm.base:foundation-testing:0.1.2`.
+Artifact: `com.stillswarm.base:foundation-testing:0.1.3`.
 
 This module provides local test doubles for foundation consumers.
 

@@ -1,6 +1,6 @@
 # Billing
 
-Artifact: `com.stillswarm.base:foundation-billing:0.1.2`.
+Artifact: `com.stillswarm.base:foundation-billing:0.1.3`.
 
 This first version supports **one-time, non-consumable lifetime unlocks**.
 Subscriptions, consumable credits, rentals, and prepaid plans are not implemented.

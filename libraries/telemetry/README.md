@@ -1,6 +1,6 @@
 # Telemetry contracts
 
-Artifact: `com.stillswarm.base:foundation-telemetry:0.1.2`.
+Artifact: `com.stillswarm.base:foundation-telemetry:0.1.3`.
 No Firebase, network client, database, worker, or connectivity observer is required.
 
 Inject `Analytics` into ViewModels that track behavior and `CrashReporter` into code

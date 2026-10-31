@@ -25,6 +25,7 @@ jobs:
           java-version: '21'
       - uses: android-actions/setup-android@v3
         with:
+          cmdline-tools-version: 16111833
           packages: platform-tools
           log-accepted-android-sdk-licenses: false
       - uses: gradle/actions/setup-gradle@v4
@@ -36,7 +37,7 @@ jobs:
           [[ "$GITHUB_REF" == "refs/tags/v$version" ]] || { echo 'Run from the matching release tag'; exit 1; }
           echo "FOUNDATION_VERSION=$version" >> "$GITHUB_ENV"
       - name: Install Android SDK
-        run: sdkmanager 'platforms;android-37' 'build-tools;37.0.0'
+        run: sdkmanager 'platforms;android-37.0' 'build-tools;37.0.0'
       - name: Test and stage all libraries
         shell: bash
         run: |
