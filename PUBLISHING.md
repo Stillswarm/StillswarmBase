@@ -1,7 +1,7 @@
 # Publishing and consuming foundation artifacts
 
 Registry: `https://maven.pkg.github.com/Stillswarm/StillswarmBase`
-Coordinates: `com.stillswarm.base:foundation-<module>:0.1.1`
+Coordinates: `com.stillswarm.base:foundation-<module>:0.1.2`
 
 ## Use from a shell app
 
@@ -44,12 +44,12 @@ dependencyResolutionManagement {
 Select only the modules you need in the app's `build.gradle.kts`:
 
 ```kotlin
-implementation("com.stillswarm.base:foundation-app-shell:0.1.1")
-implementation("com.stillswarm.base:foundation-storage:0.1.1")
-implementation("com.stillswarm.base:foundation-firebase-config:0.1.1")
-implementation("com.stillswarm.base:foundation-firebase-telemetry:0.1.1")
-implementation("com.stillswarm.base:foundation-play-billing:0.1.1")
-testImplementation("com.stillswarm.base:foundation-testing:0.1.1")
+implementation("com.stillswarm.base:foundation-app-shell:0.1.2")
+implementation("com.stillswarm.base:foundation-storage:0.1.2")
+implementation("com.stillswarm.base:foundation-firebase-config:0.1.2")
+implementation("com.stillswarm.base:foundation-firebase-telemetry:0.1.2")
+implementation("com.stillswarm.base:foundation-play-billing:0.1.2")
+testImplementation("com.stillswarm.base:foundation-testing:0.1.2")
 ```
 
 Transitive foundation dependencies use the same version. There are 12 artifacts:
@@ -70,7 +70,7 @@ into a chat, build log, URL, or command-line property.
 1. Set `foundationVersion` in `gradle.properties` to a new stable `x.y.z` version.
 2. Commit and push the reviewed source. Do not include local credentials or
    `google-services.json`.
-3. Push the matching annotated tag, for example `v0.1.1`.
+3. Push the matching annotated tag, for example `v0.1.2`.
 4. The **Publish foundation** workflow validates the version, runs unit
    tests and release lint for all libraries, stages all Maven artifacts, and compiles an
    independent consumer against them. It then publishes with the repository's
@@ -89,7 +89,7 @@ Actions must be enabled and allowed to write packages.
 ```sh
 ./gradlew publishAllPublicationsToVerificationRepository
 FOUNDATION_MAVEN_URL="file://$PWD/build/maven-repository" \
-  bash scripts/verify-maven-consumer.sh 0.1.1
+  bash scripts/verify-maven-consumer.sh 0.1.2
 ```
 
 The consumer is a temporary, independent Android project with no project

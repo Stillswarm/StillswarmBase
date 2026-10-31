@@ -1,6 +1,6 @@
 # App shell
 
-Artifact: `com.stillswarm.base:foundation-app-shell:0.1.1`.
+Artifact: `com.stillswarm.base:foundation-app-shell:0.1.2`.
 
 `StillswarmAppShell` provides the Material scaffold and shared snackbar host.
 `NavigationHandler` binds one Activity-scoped `NavigationCoordinator` to an
