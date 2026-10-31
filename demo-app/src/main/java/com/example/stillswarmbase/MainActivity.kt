@@ -74,16 +74,17 @@ internal fun ComponentDemo(
     onOpenRoomDemo: () -> Unit = {},
     onOpenConfigDemo: () -> Unit = {},
     onOpenTelemetryDemo: () -> Unit = {},
+    onOpenSettings: () -> Unit = {},
+    onOpenAbout: () -> Unit = {},
     initialBranded: Boolean = false,
     onDarkChanged: (Boolean) -> Unit = {},
     onBrandedChanged: (Boolean) -> Unit = {},
 ) {
-    var dark by rememberSaveable { mutableStateOf(initialDark) }
-    var branded by rememberSaveable { mutableStateOf(initialBranded) }
+    val dark = initialDark
+    val branded = initialBranded
     var loading by remember { mutableStateOf(false) }
     var showSheet by rememberSaveable { mutableStateOf(false) }
     var showDelete by rememberSaveable { mutableStateOf(false) }
-    var showAbout by rememberSaveable { mutableStateOf(false) }
     var entryExists by rememberSaveable { mutableStateOf(true) }
     var name by rememberSaveable { mutableStateOf("") }
     var reminders by rememberSaveable { mutableStateOf(false) }
@@ -149,7 +150,14 @@ internal fun ComponentDemo(
                                             text = "Title and search",
                                             onClick = { searchMode = 2 },
                                         ),
-                                        AppMenuItem(text = "About", onClick = { showAbout = true }),
+                                        AppMenuItem(
+                                            text = "Settings",
+                                            onClick = onOpenSettings,
+                                        ),
+                                        AppMenuItem(
+                                            text = "About",
+                                            onClick = onOpenAbout,
+                                        ),
                                     ),
                                 icon = { DemoIcon(Icons.Rounded.MoreVert) },
                             ),
@@ -175,7 +183,6 @@ internal fun ComponentDemo(
                                 label = "Dark appearance",
                                 checked = dark,
                                 onCheckedChange = {
-                                    dark = it
                                     onDarkChanged(it)
                                 },
                             )
@@ -183,7 +190,6 @@ internal fun ComponentDemo(
                                 label = "App colour override",
                                 checked = branded,
                                 onCheckedChange = {
-                                    branded = it
                                     onBrandedChanged(it)
                                 },
                             )
@@ -324,7 +330,6 @@ internal fun ComponentDemo(
                                                 InlineButton(
                                                     text = "Reset app colours",
                                                     onClick = {
-                                                        branded = false
                                                         onBrandedChanged(false)
                                                     },
                                                 )
@@ -393,22 +398,7 @@ internal fun ComponentDemo(
                         )
                     },
                 )
-            if (showAbout)
-                StillswarmBaseTheme {
-                    AppDialog(
-                        title = "Stillswarm Base",
-                        confirmText = "Done",
-                        dismissText = "Close",
-                        onConfirm = { showAbout = false },
-                        onDismissRequest = { showAbout = false },
-                        content = {
-                            Text(
-                                text =
-                                    "Reusable Android components. Manrope headings and Inter body text, with dynamic colours off."
-                            )
-                        },
-                    )
-                }
+
         },
     )
 }

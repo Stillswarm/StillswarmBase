@@ -1,0 +1,5 @@
+<resources>
+    <string name="stillswarm_settings_title">Settings</string>
+    <string name="stillswarm_about_title">About</string>
+    <string name="stillswarm_navigate_back">Back</string>
+</resources>

@@ -10,6 +10,10 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.compose.material.icons.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
     api(libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     api(project(":libraries:ui"))
