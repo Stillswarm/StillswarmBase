@@ -1,6 +1,6 @@
 # Preferences storage
 
-Artifact: `com.stillswarm.base:foundation-storage:0.1.0`.
+Artifact: `com.stillswarm.base:foundation-storage:0.1.1`.
 
 This module implements shared settings with Preferences DataStore, not the legacy
 Android SharedPreferences API. All operations are local and asynchronous.

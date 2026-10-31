@@ -1,6 +1,6 @@
 # Room support
 
-Optional artifact: `com.stillswarm.base:foundation-storage-room:0.1.0`.
+Optional artifact: `com.stillswarm.base:foundation-storage-room:0.1.1`.
 This module is independent of `foundation-storage` (Preferences DataStore).
 Neither preferences, config, nor app-shell pulls Room in automatically.
 

@@ -40,7 +40,7 @@ jobs:
           modules=(libraries:ui libraries:navigation libraries:app-shell libraries:config libraries:telemetry libraries:storage libraries:storage-room libraries:billing integrations:firebase-config integrations:firebase-telemetry integrations:play-billing testing)
           tasks=()
           for module in "${modules[@]}"; do
-            tasks+=(":$module:testReleaseUnitTest" ":$module:lintRelease")
+            tasks+=(":$module:testDebugUnitTest" ":$module:lintRelease")
           done
           ./gradlew "${tasks[@]}" publishAllPublicationsToVerificationRepository --no-configuration-cache --console=plain
       - name: Verify independent consumer before publishing

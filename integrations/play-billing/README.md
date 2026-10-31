@@ -1,6 +1,6 @@
 # Google Play Billing
 
-Artifact: `com.stillswarm.base:foundation-play-billing:0.1.0`.
+Artifact: `com.stillswarm.base:foundation-play-billing:0.1.1`.
 
 Uses Play Billing 8.3.0. This adapter supports configured **lifetime INAPP products**
 with one eligible purchase option. It rejects rental/preorder offers and ambiguous

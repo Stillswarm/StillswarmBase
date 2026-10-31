@@ -1,6 +1,6 @@
 # Firebase Remote Config adapter
 
-Artifact: `com.stillswarm.base:foundation-firebase-config:0.1.0`.
+Artifact: `com.stillswarm.base:foundation-firebase-config:0.1.1`.
 
 `FirebaseRemoteConfigSource` implements core `RemoteConfigSource`. Inject a configured
 FirebaseRemoteConfig instance, then supply this adapter to a process-scoped ConfigSession.

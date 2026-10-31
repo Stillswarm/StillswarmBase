@@ -1,6 +1,6 @@
 # Core config
 
-Artifact: `com.stillswarm.base:foundation-config:0.1.0`.
+Artifact: `com.stillswarm.base:foundation-config:0.1.1`.
 Depends on preferences storage; no Firebase, Room, connectivity listener, or network SDK.
 
 ## App setup

@@ -1,6 +1,6 @@
 # Navigation
 
-Artifact: `com.stillswarm.base:foundation-navigation:0.1.0`.
+Artifact: `com.stillswarm.base:foundation-navigation:0.1.1`.
 
 `Navigator` is the interface injected into feature ViewModels. `NavigationCoordinator`
 is its Activity-scoped ViewModel implementation. It owns a conflated Channel:
