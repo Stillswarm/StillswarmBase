@@ -30,12 +30,16 @@ import com.example.stillswarmbase.room.RoomDemoScreen
 
 @Serializable internal data object RoomDemo : Destination
 
+@Serializable internal data object ConfigDemo : Destination
+
 @Serializable internal data class NavigationDetails(val entryId: String) : Destination
 
 internal class NavigationDemoViewModel(private val navigator: Navigator) : ViewModel() {
     fun openEntry() = navigator.navigate(NavigationDetails(entryId = "sample-entry"))
 
     fun openRoom() = navigator.navigate(RoomDemo)
+
+    fun openConfig() = navigator.navigate(ConfigDemo)
 
     fun back() = navigator.back()
 
@@ -59,8 +63,15 @@ internal fun NavigationDemo(coordinator: NavigationCoordinator) {
             composable<Gallery>(
                 content = {
                     val model = viewModel(initializer = { NavigationDemoViewModel(coordinator) })
-                    PersistentComponentDemo(onOpenNavigationDemo = model::openEntry, onOpenRoomDemo = model::openRoom)
+                    PersistentComponentDemo(
+                        onOpenNavigationDemo = model::openEntry,
+                        onOpenRoomDemo = model::openRoom,
+                        onOpenConfigDemo = model::openConfig,
+                    )
                 }
+            )
+            composable<ConfigDemo>(
+                content = { ConfigDemoScreen(onBack = coordinator::back) },
             )
             composable<RoomDemo>(
                 content = { RoomDemoScreen(onBack = coordinator::back) },

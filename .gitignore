@@ -18,3 +18,6 @@ local.properties
 **/build/
 **/.gradle/
 .kotlin/
+
+# Firebase Android app configuration is supplied locally or by CI.
+**/google-services.json

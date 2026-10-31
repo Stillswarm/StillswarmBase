@@ -62,7 +62,11 @@ internal class DemoSettingsViewModel(private val repository: DemoSettingsReposit
 }
 
 @Composable
-internal fun PersistentComponentDemo(onOpenNavigationDemo: () -> Unit, onOpenRoomDemo: () -> Unit) {
+internal fun PersistentComponentDemo(
+    onOpenNavigationDemo: () -> Unit,
+    onOpenRoomDemo: () -> Unit,
+    onOpenConfigDemo: () -> Unit,
+) {
     val context = LocalContext.current.applicationContext
     val model =
         viewModel(
@@ -87,6 +91,7 @@ internal fun PersistentComponentDemo(onOpenNavigationDemo: () -> Unit, onOpenRoo
                     initialDark = current.dark,
                     onOpenNavigationDemo = onOpenNavigationDemo,
                     onOpenRoomDemo = onOpenRoomDemo,
+                    onOpenConfigDemo = onOpenConfigDemo,
                     initialBranded = current.branded,
                     onDarkChanged = model::setDark,
                     onBrandedChanged = model::setBranded,

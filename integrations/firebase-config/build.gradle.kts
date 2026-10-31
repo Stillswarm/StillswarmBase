@@ -8,6 +8,10 @@ android {
 }
 
 dependencies {
+    api(platform(libs.firebase.bom))
+    api(libs.firebase.config)
+    implementation(libs.kotlinx.coroutines.play.services)
+    testImplementation(libs.kotlinx.coroutines.test)
     api(project(":libraries:config"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

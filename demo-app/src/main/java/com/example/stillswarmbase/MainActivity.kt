@@ -72,6 +72,7 @@ internal fun ComponentDemo(
     initialDark: Boolean = isSystemInDarkTheme(),
     onOpenNavigationDemo: () -> Unit = {},
     onOpenRoomDemo: () -> Unit = {},
+    onOpenConfigDemo: () -> Unit = {},
     initialBranded: Boolean = false,
     onDarkChanged: (Boolean) -> Unit = {},
     onBrandedChanged: (Boolean) -> Unit = {},
@@ -189,6 +190,10 @@ internal fun ComponentDemo(
                             InlineButton(
                                 text = "Try Room storage",
                                 onClick = onOpenRoomDemo,
+                            )
+                            InlineButton(
+                                text = "Try config",
+                                onClick = onOpenConfigDemo,
                             )
                             Text(text = "Buttons", style = MaterialTheme.typography.titleMedium)
                             SuperButton(

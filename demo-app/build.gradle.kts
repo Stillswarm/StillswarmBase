@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.google.services)
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
@@ -19,7 +20,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.stillswarmbase.DemoTestRunner"
     }
 
     buildTypes {
@@ -35,6 +36,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -43,6 +45,8 @@ room {
 }
 
 dependencies {
+    implementation(project(":integrations:firebase-config"))
+    implementation(project(":libraries:config"))
     implementation(project(":libraries:storage-room"))
     ksp(libs.androidx.room.compiler)
     implementation(project(":libraries:storage"))
