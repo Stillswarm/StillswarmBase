@@ -4,7 +4,7 @@ Reusable Android library modules with a demo and a buildable starter. Open this 
 
 ## Current scope
 
-All library modules have Android build files, namespaces, manifests, resources, consumer rules, main/test/androidTest source sets, and Maven publications. Shared theme, buttons, cards, top bar, FAB, dismiss-only snackbar, arbitrary-content bottom sheet, confirmation dialog, and shell are implemented. Typed navigation, a latest-pending-request coordinator, and a lifecycle-aware UI handler are also implemented. The demo exercises component interactions and ViewModel-driven navigation. Typed Preferences DataStore storage and an in-memory testing implementation are also available. Core config supports typed values, cached remote snapshots, and persisted local overrides. The Firebase Remote Config adapter is connected to the demo project. Core telemetry and Firebase Analytics/Crashlytics integration are implemented. Billing remains scaffolded. Validated deep-link routing and cold/warm demo intent handling are implemented; notification creation remains deferred. No Firebase project or credentials are required to build. No artifacts have been uploaded remotely.
+All library modules have Android build files, namespaces, manifests, resources, consumer rules, main/test/androidTest source sets, and Maven publications. Shared theme, buttons, cards, top bar, FAB, dismiss-only snackbar, arbitrary-content bottom sheet, confirmation dialog, and shell are implemented. Typed navigation, a latest-pending-request coordinator, and a lifecycle-aware UI handler are also implemented. The demo exercises component interactions and ViewModel-driven navigation. Typed Preferences DataStore storage and an in-memory testing implementation are also available. Core config supports typed values, cached remote snapshots, and persisted local overrides. The Firebase Remote Config adapter is connected to the demo project. Core telemetry and Firebase Analytics/Crashlytics integration are implemented. Lifetime billing, a Google Play adapter, and a simulated payments demo are implemented; subscriptions and consumables remain deferred. Validated deep-link routing and cold/warm demo intent handling are implemented; notification creation remains deferred. No Firebase project or credentials are required to build. No artifacts have been uploaded remotely.
 
 The existing `app` scaffold was moved to `demo-app`, preserving its application ID, resources, and tests. The missing launcher activity was supplied.
 
@@ -29,7 +29,8 @@ The last command publishes libraries locally to `build/maven-repository` for ver
 - `libraries:telemetry`: vendor-independent analytics/crash contracts.
 - `libraries:storage-room`: optional Room BaseDao; app-owned database and query example in demo-app.
 - `libraries:storage`: typed local preferences, atomic updates, and DataStore integration.
-- `libraries:billing`: purchase and entitlement infrastructure.
+- `libraries:billing`: lifetime purchase reconciliation and cached entitlements.
+- `integrations:play-billing`: Google Play checkout, verification, and acknowledgement.
 - `integrations:firebase-config`: optional adapter depending on config.
 - `integrations:firebase-telemetry`: optional adapter depending on telemetry.
 - `testing`: test-only utilities depending on config, telemetry, and billing.

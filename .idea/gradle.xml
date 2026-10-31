@@ -25,6 +25,7 @@
             <option value="$PROJECT_DIR$/integrations" />
             <option value="$PROJECT_DIR$/integrations/firebase-config" />
             <option value="$PROJECT_DIR$/integrations/firebase-telemetry" />
+            <option value="$PROJECT_DIR$/integrations/play-billing" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/app-shell" />
             <option value="$PROJECT_DIR$/libraries/billing" />

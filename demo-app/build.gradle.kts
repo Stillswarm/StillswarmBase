@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.google.services)
@@ -6,6 +8,16 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+}
+
+val billingProperties = Properties().apply {
+    val file = rootProject.file("local.properties")
+    if (file.exists()) file.inputStream().use { load(it) }
+}
+fun billingString(name: String): String {
+    val value = billingProperties.getProperty(name, "")
+    require(value.all { it.isLetterOrDigit() || it in "_./+=-" }) { "Invalid billing property: $name" }
+    return "\"$value\""
 }
 
 android {
@@ -20,6 +32,8 @@ android {
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
+        buildConfigField("String", "BILLING_PRODUCT_ID", billingString("billing.productId"))
+        buildConfigField("String", "BILLING_PUBLIC_KEY", billingString("billing.publicKey"))
 
         testInstrumentationRunner = "com.example.stillswarmbase.DemoTestRunner"
     }
@@ -47,7 +61,8 @@ room {
 
 dependencies {
     implementation(project(":integrations:firebase-telemetry"))
-    androidTestImplementation(project(":testing"))
+    implementation(project(":testing"))
+    implementation(project(":integrations:play-billing"))
     implementation(project(":integrations:firebase-config"))
     implementation(project(":libraries:config"))
     implementation(project(":libraries:storage-room"))

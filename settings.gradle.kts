@@ -38,3 +38,5 @@ include(":integrations:firebase-telemetry")
 include(":testing")
 include(":demo-app")
 include(":starter-template")
+
+include(":integrations:play-billing")

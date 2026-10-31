@@ -1,2 +1,2 @@
-/** Purchase and entitlement infrastructure; implementation is not yet provided. */
+/** Store-independent lifetime purchase and entitlement infrastructure. */
 package com.stillswarm.base.billing;

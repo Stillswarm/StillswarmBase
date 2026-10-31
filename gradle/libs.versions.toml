@@ -17,6 +17,7 @@ room = "2.8.4"
 ksp = "2.3.12"
 
 [libraries]
+play-billing = { module = "com.android.billingclient:billing", version = "8.3.0" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version = "34.7.0" }

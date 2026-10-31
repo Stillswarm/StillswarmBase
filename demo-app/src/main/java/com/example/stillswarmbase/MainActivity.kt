@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.content.Intent
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.stillswarm.base.navigation.DeepLinkHandler
 import com.stillswarm.base.navigation.DeepLinkResult
 import com.stillswarm.base.navigation.NavigationCoordinator
@@ -51,6 +52,11 @@ class MainActivity : ComponentActivity() {
         setContent { NavigationDemo(coordinator = coordinator) }
     }
 
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch { (application as DemoApplication).playBilling?.onResume() }
+    }
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
@@ -74,6 +80,7 @@ internal fun ComponentDemo(
     onOpenRoomDemo: () -> Unit = {},
     onOpenConfigDemo: () -> Unit = {},
     onOpenTelemetryDemo: () -> Unit = {},
+    onOpenBillingDemo: () -> Unit = {},
     onOpenSettings: () -> Unit = {},
     onOpenAbout: () -> Unit = {},
     initialBranded: Boolean = false,
@@ -205,6 +212,10 @@ internal fun ComponentDemo(
                             InlineButton(
                                 text = "Try telemetry",
                                 onClick = onOpenTelemetryDemo,
+                            )
+                            InlineButton(
+                                text = "Try payments",
+                                onClick = onOpenBillingDemo,
                             )
                             Text(text = "Buttons", style = MaterialTheme.typography.titleMedium)
                             SuperButton(

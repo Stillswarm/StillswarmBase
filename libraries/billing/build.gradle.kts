@@ -8,6 +8,9 @@ android {
 }
 
 dependencies {
+    api(project(":libraries:storage"))
+    api(libs.kotlinx.coroutines.core)
+    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

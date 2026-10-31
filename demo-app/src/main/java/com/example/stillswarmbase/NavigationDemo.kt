@@ -42,6 +42,10 @@ import com.example.stillswarmbase.room.RoomDemoScreen
 
 @Serializable internal data object ConfigDemo : Destination
 
+@Serializable internal data object PlayBillingDemo : Destination
+
+@Serializable internal data object BillingDemo : Destination
+
 @Serializable internal data object TelemetryDemo : Destination
 
 @Serializable internal data class NavigationDetails(val entryId: String) : Destination
@@ -88,6 +92,7 @@ internal fun NavigationDemo(coordinator: NavigationCoordinator) {
                             onOpenRoomDemo = model::openRoom,
                             onOpenConfigDemo = model::openConfig,
                             onOpenTelemetryDemo = model::openTelemetry,
+                            onOpenBillingDemo = { coordinator.navigate(BillingDemo) },
                             onOpenSettings = { coordinator.navigate(SettingsPage) },
                             onOpenAbout = { coordinator.navigate(AboutPage) },
                             model = settingsModel,
@@ -110,6 +115,17 @@ internal fun NavigationDemo(coordinator: NavigationCoordinator) {
                             versionLabel = "Version ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})",
                             description = "Reusable Android foundations. Manrope headings, Inter body text, and simple components with dynamic colours off.",
                             onBack = coordinator::back,
+                        )
+                    },
+                )
+                composable<PlayBillingDemo>(
+                    content = { PlayBillingDemoScreen(onBack = coordinator::back) },
+                )
+                composable<BillingDemo>(
+                    content = {
+                        BillingDemoScreen(
+                            onBack = coordinator::back,
+                            onPlayBilling = { coordinator.navigate(PlayBillingDemo) },
                         )
                     },
                 )

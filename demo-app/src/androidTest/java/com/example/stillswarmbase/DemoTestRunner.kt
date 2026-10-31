@@ -27,6 +27,7 @@ class DemoTestRunner : AndroidJUnitRunner() {
 }
 
 class TestDemoApplication : DemoApplication() {
+    override val realBillingEnabled = false
     override fun createTelemetry(): com.stillswarm.base.telemetry.Telemetry {
         com.google.firebase.analytics.FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(false)
         com.google.firebase.crashlytics.FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false)

@@ -3,14 +3,14 @@ package com.example.stillswarmbase
 import android.app.Application
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.stillswarm.base.telemetry.Telemetry
-import com.stillswarm.base.firebase.telemetry.FirebaseTelemetry
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.stillswarm.base.config.ConfigKey
 import com.stillswarm.base.config.ConfigSession
 import com.stillswarm.base.config.RemoteConfigSource
 import com.stillswarm.base.firebase.config.FirebaseRemoteConfigSource
+import com.stillswarm.base.firebase.telemetry.FirebaseTelemetry
 import com.stillswarm.base.storage.defaultPreferenceStore
+import com.stillswarm.base.telemetry.Telemetry
 import kotlinx.coroutines.*
 
 internal object DemoConfigKeys {
@@ -31,18 +31,55 @@ internal object DemoConfigKeys {
 
 /** One config session per process, independent of Activity recreation and screen navigation. */
 open class DemoApplication : Application() {
+    protected open val realBillingEnabled: Boolean = true
+    internal var billingSetupError: String? = null
+        private set
+
+    internal val playBilling by lazy {
+        if (
+            !realBillingEnabled ||
+                BuildConfig.BILLING_PRODUCT_ID.isBlank() ||
+                BuildConfig.BILLING_PUBLIC_KEY.isBlank()
+        )
+            null
+        else
+            runCatching {
+                    com.stillswarm.base.play.billing.PlayBilling(
+                        context = this,
+                        productIds = setOf(BuildConfig.BILLING_PRODUCT_ID),
+                        verifier =
+                            com.stillswarm.base.play.billing.LocalSignatureVerifier(
+                                base64PublicKey = BuildConfig.BILLING_PUBLIC_KEY,
+                                packageName = packageName,
+                            ),
+                        cache =
+                            com.stillswarm.base.billing.PreferenceEntitlementCache(
+                                storage = defaultPreferenceStore(this),
+                                namespace = "demo_play",
+                            ),
+                    )
+                }
+                .getOrElse {
+                    billingSetupError =
+                        "Invalid billing configuration. Check the app licensing public key in local.properties."
+                    null
+                }
+    }
+
     internal lateinit var telemetry: Telemetry
         private set
 
-    protected open fun createTelemetry(): Telemetry = FirebaseTelemetry(
-        analytics = FirebaseAnalytics.getInstance(this),
-        crashlytics = FirebaseCrashlytics.getInstance(),
-        analyticsEnabled = true,
-        crashReportingEnabled = true,
-        onFailure = { failure ->
-            if (BuildConfig.DEBUG) android.util.Log.w("DemoTelemetry", "Telemetry SDK call failed", failure)
-        },
-    )
+    protected open fun createTelemetry(): Telemetry =
+        FirebaseTelemetry(
+            analytics = FirebaseAnalytics.getInstance(this),
+            crashlytics = FirebaseCrashlytics.getInstance(),
+            analyticsEnabled = true,
+            crashReportingEnabled = true,
+            onFailure = { failure ->
+                if (BuildConfig.DEBUG)
+                    android.util.Log.w("DemoTelemetry", "Telemetry SDK call failed", failure)
+            },
+        )
 
     private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     internal lateinit var config: ConfigSession
