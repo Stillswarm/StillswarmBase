@@ -12,9 +12,14 @@ interface Navigator {
     fun replace(destination: Destination)
 
     fun resetTo(destination: Destination)
+
+    /** Rebuilds root + target as one request, so latest-wins cannot drop half the operation. */
+    fun openDeepLink(root: Destination, destination: Destination)
 }
 
 sealed interface NavigationRequest {
+    data class OpenDeepLink(val root: Destination, val destination: Destination) : NavigationRequest
+
     data class Navigate(val destination: Destination) : NavigationRequest
 
     data object Back : NavigationRequest

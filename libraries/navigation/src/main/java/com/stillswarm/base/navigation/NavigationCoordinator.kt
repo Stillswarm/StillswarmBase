@@ -23,6 +23,9 @@ class NavigationCoordinator : ViewModel(), Navigator {
 
     override fun resetTo(destination: Destination) = send(NavigationRequest.ResetTo(destination))
 
+    override fun openDeepLink(root: Destination, destination: Destination) =
+        send(NavigationRequest.OpenDeepLink(root = root, destination = destination))
+
     private fun send(request: NavigationRequest) {
         channel.trySend(request)
     }

@@ -24,6 +24,16 @@ fun NavigationHandler(coordinator: NavigationCoordinator, navController: NavHost
             lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 coordinator.requests.collect { request ->
                     when (request) {
+                        is NavigationRequest.OpenDeepLink -> {
+                            navController.navigate(request.root) {
+                                popUpTo(navController.graph.id) { inclusive = false }
+                                launchSingleTop = true
+                            }
+                            if (request.destination != request.root) {
+                                navController.navigate(request.destination) { launchSingleTop = true }
+                            }
+                        }
+
                         is NavigationRequest.Navigate ->
                             navController.navigate(request.destination) { launchSingleTop = true }
 

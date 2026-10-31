@@ -1,6 +1,12 @@
 package com.example.stillswarmbase
 
 import android.os.Bundle
+import android.content.Intent
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import com.stillswarm.base.navigation.DeepLinkHandler
+import com.stillswarm.base.navigation.DeepLinkResult
+import com.stillswarm.base.navigation.NavigationCoordinator
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -30,10 +36,33 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+    private lateinit var deepLinks: DeepLinkHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent { NavigationDemo() }
+        val coordinator = ViewModelProvider(this)[NavigationCoordinator::class.java]
+        deepLinks = DeepLinkHandler(
+            resolver = demoDeepLinkResolver,
+            navigator = coordinator,
+            root = Gallery,
+        )
+        if (savedInstanceState == null) handleLink(intent)
+        setContent { NavigationDemo(coordinator = coordinator) }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleLink(intent)
+    }
+
+    private fun handleLink(intent: Intent) {
+        when (deepLinks.handle(intent)) {
+            is DeepLinkResult.Invalid, DeepLinkResult.Unsupported ->
+                Toast.makeText(this, "This link is not supported.", Toast.LENGTH_SHORT).show()
+            else -> Unit
+        }
     }
 }
 

@@ -45,9 +45,7 @@ internal class NavigationDemoViewModel(private val navigator: Navigator) : ViewM
 }
 
 @Composable
-internal fun NavigationDemo() {
-    // Created outside NavHost: retained by the Activity across configuration changes.
-    val coordinator: NavigationCoordinator = viewModel()
+internal fun NavigationDemo(coordinator: NavigationCoordinator) {
     val controller = rememberNavController()
     NavigationHandler(coordinator = coordinator, navController = controller)
     NavHost(
