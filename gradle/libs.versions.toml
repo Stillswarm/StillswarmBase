@@ -17,7 +17,9 @@ room = "2.8.4"
 ksp = "2.3.12"
 
 [libraries]
-firebase-bom = { module = "com.google.firebase:firebase-bom", version = "35.1.0" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version = "34.7.0" }
 firebase-config = { module = "com.google.firebase:firebase-config" }
 kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "coroutines" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
@@ -49,6 +51,7 @@ androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-te
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 
 [plugins]
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version = "3.0.8" }
 google-services = { id = "com.google.gms.google-services", version = "4.5.0" }
 room = { id = "androidx.room", version.ref = "room" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

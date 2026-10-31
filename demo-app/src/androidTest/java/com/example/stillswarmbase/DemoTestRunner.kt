@@ -27,6 +27,12 @@ class DemoTestRunner : AndroidJUnitRunner() {
 }
 
 class TestDemoApplication : DemoApplication() {
+    override fun createTelemetry(): com.stillswarm.base.telemetry.Telemetry {
+        com.google.firebase.analytics.FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(false)
+        com.google.firebase.crashlytics.FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false)
+        return com.stillswarm.base.testing.RecordingTelemetry()
+    }
+
     override val configNamespace: String = "demo_test"
 
     override fun createRemoteSource() = RemoteConfigSource {

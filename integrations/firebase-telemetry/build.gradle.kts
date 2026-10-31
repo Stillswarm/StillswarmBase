@@ -8,6 +8,9 @@ android {
 }
 
 dependencies {
+    api(platform(libs.firebase.bom))
+    api(libs.firebase.analytics)
+    api(libs.firebase.crashlytics)
     api(project(":libraries:telemetry"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -66,6 +66,7 @@ internal fun PersistentComponentDemo(
     onOpenNavigationDemo: () -> Unit,
     onOpenRoomDemo: () -> Unit,
     onOpenConfigDemo: () -> Unit,
+    onOpenTelemetryDemo: () -> Unit,
 ) {
     val context = LocalContext.current.applicationContext
     val model =
@@ -92,6 +93,7 @@ internal fun PersistentComponentDemo(
                     onOpenNavigationDemo = onOpenNavigationDemo,
                     onOpenRoomDemo = onOpenRoomDemo,
                     onOpenConfigDemo = onOpenConfigDemo,
+                    onOpenTelemetryDemo = onOpenTelemetryDemo,
                     initialBranded = current.branded,
                     onDarkChanged = model::setDark,
                     onBrandedChanged = model::setBranded,

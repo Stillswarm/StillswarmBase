@@ -1,6 +1,10 @@
 package com.example.stillswarmbase
 
 import android.app.Application
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.stillswarm.base.telemetry.Telemetry
+import com.stillswarm.base.firebase.telemetry.FirebaseTelemetry
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.stillswarm.base.config.ConfigKey
 import com.stillswarm.base.config.ConfigSession
@@ -27,6 +31,19 @@ internal object DemoConfigKeys {
 
 /** One config session per process, independent of Activity recreation and screen navigation. */
 open class DemoApplication : Application() {
+    internal lateinit var telemetry: Telemetry
+        private set
+
+    protected open fun createTelemetry(): Telemetry = FirebaseTelemetry(
+        analytics = FirebaseAnalytics.getInstance(this),
+        crashlytics = FirebaseCrashlytics.getInstance(),
+        analyticsEnabled = true,
+        crashReportingEnabled = true,
+        onFailure = { failure ->
+            if (BuildConfig.DEBUG) android.util.Log.w("DemoTelemetry", "Telemetry SDK call failed", failure)
+        },
+    )
+
     private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     internal lateinit var config: ConfigSession
         private set
@@ -41,6 +58,7 @@ open class DemoApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        telemetry = createTelemetry()
         config =
             ConfigSession(
                 keys = DemoConfigKeys.all,

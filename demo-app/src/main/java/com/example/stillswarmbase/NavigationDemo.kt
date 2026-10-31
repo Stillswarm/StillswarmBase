@@ -32,6 +32,8 @@ import com.example.stillswarmbase.room.RoomDemoScreen
 
 @Serializable internal data object ConfigDemo : Destination
 
+@Serializable internal data object TelemetryDemo : Destination
+
 @Serializable internal data class NavigationDetails(val entryId: String) : Destination
 
 internal class NavigationDemoViewModel(private val navigator: Navigator) : ViewModel() {
@@ -40,6 +42,8 @@ internal class NavigationDemoViewModel(private val navigator: Navigator) : ViewM
     fun openRoom() = navigator.navigate(RoomDemo)
 
     fun openConfig() = navigator.navigate(ConfigDemo)
+
+    fun openTelemetry() = navigator.navigate(TelemetryDemo)
 
     fun back() = navigator.back()
 
@@ -67,8 +71,12 @@ internal fun NavigationDemo(coordinator: NavigationCoordinator) {
                         onOpenNavigationDemo = model::openEntry,
                         onOpenRoomDemo = model::openRoom,
                         onOpenConfigDemo = model::openConfig,
+                        onOpenTelemetryDemo = model::openTelemetry,
                     )
                 }
+            )
+            composable<TelemetryDemo>(
+                content = { TelemetryDemoScreen(onBack = coordinator::back) },
             )
             composable<ConfigDemo>(
                 content = { ConfigDemoScreen(onBack = coordinator::back) },

@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.google.services)
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
@@ -45,6 +46,8 @@ room {
 }
 
 dependencies {
+    implementation(project(":integrations:firebase-telemetry"))
+    androidTestImplementation(project(":testing"))
     implementation(project(":integrations:firebase-config"))
     implementation(project(":libraries:config"))
     implementation(project(":libraries:storage-room"))

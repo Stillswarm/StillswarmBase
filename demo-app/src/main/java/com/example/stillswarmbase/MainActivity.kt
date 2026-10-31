@@ -73,6 +73,7 @@ internal fun ComponentDemo(
     onOpenNavigationDemo: () -> Unit = {},
     onOpenRoomDemo: () -> Unit = {},
     onOpenConfigDemo: () -> Unit = {},
+    onOpenTelemetryDemo: () -> Unit = {},
     initialBranded: Boolean = false,
     onDarkChanged: (Boolean) -> Unit = {},
     onBrandedChanged: (Boolean) -> Unit = {},
@@ -194,6 +195,10 @@ internal fun ComponentDemo(
                             InlineButton(
                                 text = "Try config",
                                 onClick = onOpenConfigDemo,
+                            )
+                            InlineButton(
+                                text = "Try telemetry",
+                                onClick = onOpenTelemetryDemo,
                             )
                             Text(text = "Buttons", style = MaterialTheme.typography.titleMedium)
                             SuperButton(
