@@ -4,7 +4,7 @@ Reusable Android library modules with a demo and a buildable starter. Open this 
 
 ## Current scope
 
-All library modules have Android build files, namespaces, manifests, resources, consumer rules, main/test/androidTest source sets, and Maven publications. Shared theme, buttons, cards, top bar, FAB, dismiss-only snackbar, arbitrary-content bottom sheet, confirmation dialog, and shell are implemented. Typed navigation, a latest-pending-request coordinator, and a lifecycle-aware UI handler are also implemented. The demo exercises component interactions and ViewModel-driven navigation. Typed Preferences DataStore storage and an in-memory testing implementation are also available. Core config supports typed values, cached remote snapshots, and persisted local overrides. The Firebase Remote Config adapter is connected to the demo project. Core telemetry and Firebase Analytics/Crashlytics integration are implemented. Lifetime billing, a Google Play adapter, and a simulated payments demo are implemented; subscriptions and consumables remain deferred. Validated deep-link routing and cold/warm demo intent handling are implemented; notification creation remains deferred. No Firebase project or credentials are required to build. No artifacts have been uploaded remotely.
+All library modules have Android build files, namespaces, manifests, resources, consumer rules, main/test/androidTest source sets, and Maven publications. Shared theme, buttons, cards, top bar, FAB, dismiss-only snackbar, arbitrary-content bottom sheet, confirmation dialog, and shell are implemented. Typed navigation, a latest-pending-request coordinator, and a lifecycle-aware UI handler are also implemented. The demo exercises component interactions and ViewModel-driven navigation. Typed Preferences DataStore storage and an in-memory testing implementation are also available. Core config supports typed values, cached remote snapshots, and persisted local overrides. The Firebase Remote Config adapter is connected to the demo project. Core telemetry and Firebase Analytics/Crashlytics integration are implemented. Lifetime billing, a Google Play adapter, and a simulated payments demo are implemented; subscriptions and consumables remain deferred. Validated deep-link routing and cold/warm demo intent handling are implemented; notification creation remains deferred. No Firebase project or credentials are required to build. Remote publishing is configured for GitHub Packages; see PUBLISHING.md for releases and consumer authentication.
 
 The existing `app` scaffold was moved to `demo-app`, preserving its application ID, resources, and tests. The missing launcher activity was supplied.
 
@@ -18,7 +18,7 @@ Use the Android Studio bundled JDK and the installed SDK matching the existing p
 ./gradlew publishAllPublicationsToVerificationRepository
 ```
 
-The last command publishes libraries locally to `build/maven-repository` for verification. `publishToMavenLocal` is also available. Remote GitHub Packages credentials/repository configuration are deliberately not supplied until the hosting repository is chosen.
+The last command publishes libraries locally to `build/maven-repository` for verification. `publishToMavenLocal` is also available. GitHub Packages publication and release-tag automation are configured; see [PUBLISHING.md](PUBLISHING.md).
 
 ## Modules
 
@@ -36,4 +36,4 @@ The last command publishes libraries locally to `build/maven-repository` for ver
 - `testing`: test-only utilities depending on config, telemetry, and billing.
 - `build-logic`: included Gradle build supplying shared Android library and publication defaults.
 
-Artifacts use `com.stillswarm.base:foundation-<module-name>:0.1.0-SNAPSHOT`. Group and version are configurable in `gradle.properties`. Kotlin files can live under `src/main/java`; the package-info files keep empty package/source-set directories visible and versioned without fake implementations.
+Artifacts use `com.stillswarm.base:foundation-<module-name>:0.1.0`. Group and version are configurable in `gradle.properties`. Kotlin files can live under `src/main/java`; the package-info files keep empty package/source-set directories visible and versioned without fake implementations.

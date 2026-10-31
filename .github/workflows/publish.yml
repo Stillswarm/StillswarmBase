@@ -1,0 +1,58 @@
+name: Publish foundation
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: foundation-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Validate release tag
+        shell: bash
+        run: |
+          version=$(sed -n 's/^foundationVersion=//p' gradle.properties)
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo 'Use a stable x.y.z version'; exit 1; }
+          [[ "$GITHUB_REF" == "refs/tags/v$version" ]] || { echo 'Run from the matching release tag'; exit 1; }
+          echo "FOUNDATION_VERSION=$version" >> "$GITHUB_ENV"
+      - name: Install Android SDK
+        run: sdkmanager 'platforms;android-37' 'build-tools;37.0.0'
+      - name: Test and stage all libraries
+        shell: bash
+        run: |
+          modules=(libraries:ui libraries:navigation libraries:app-shell libraries:config libraries:telemetry libraries:storage libraries:storage-room libraries:billing integrations:firebase-config integrations:firebase-telemetry integrations:play-billing testing)
+          tasks=()
+          for module in "${modules[@]}"; do
+            tasks+=(":$module:testReleaseUnitTest" ":$module:lintRelease")
+          done
+          ./gradlew "${tasks[@]}" publishAllPublicationsToVerificationRepository --no-configuration-cache --console=plain
+      - name: Verify independent consumer before publishing
+        env:
+          FOUNDATION_MAVEN_URL: file://${{ github.workspace }}/build/maven-repository
+        run: bash scripts/verify-maven-consumer.sh "$FOUNDATION_VERSION"
+      - name: Publish to GitHub Packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew publishAllPublicationsToGitHubPackagesRepository --no-configuration-cache --console=plain
+      - name: Verify hosted artifacts from an independent consumer
+        env:
+          FOUNDATION_MAVEN_URL: https://maven.pkg.github.com/Stillswarm/StillswarmBase
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/verify-maven-consumer.sh "$FOUNDATION_VERSION"

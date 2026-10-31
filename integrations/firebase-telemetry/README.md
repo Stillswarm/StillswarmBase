@@ -1,6 +1,6 @@
 # Firebase telemetry
 
-Artifact: `com.stillswarm.base:foundation-firebase-telemetry:0.1.0-SNAPSHOT`.
+Artifact: `com.stillswarm.base:foundation-firebase-telemetry:0.1.0`.
 FirebaseTelemetry implements Analytics + CrashReporter with Firebase Analytics and
 Crashlytics. Both collection flags default to false in its constructor; apps opt in.
 

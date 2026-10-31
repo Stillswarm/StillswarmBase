@@ -4,6 +4,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.JavaVersion
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.artifacts.repositories.PasswordCredentials
 
 /** Shared Android library and Maven publication defaults. Apply after com.android.library. */
 class AndroidLibraryConventionPlugin implements Plugin<Project> {
@@ -34,6 +35,11 @@ class AndroidLibraryConventionPlugin implements Plugin<Project> {
                     pom {
                         name = artifactId
                         description = 'Stillswarm reusable Android foundation: ' + project.name
+                        url = 'https://github.com/Stillswarm/StillswarmBase'
+                        scm {
+                            url = 'https://github.com/Stillswarm/StillswarmBase'
+                            connection = 'scm:git:https://github.com/Stillswarm/StillswarmBase.git'
+                        }
                     }
                 }
             }
@@ -42,6 +48,16 @@ class AndroidLibraryConventionPlugin implements Plugin<Project> {
             maven {
                 name = 'verification'
                 url = project.rootProject.layout.buildDirectory.dir('maven-repository')
+            }
+            maven {
+                name = 'GitHubPackages'
+                url = 'https://maven.pkg.github.com/Stillswarm/StillswarmBase'
+                credentials(PasswordCredentials) {
+                    username = project.providers.gradleProperty('githubPackagesUsername')
+                        .orElse(project.providers.environmentVariable('GITHUB_ACTOR')).orNull
+                    password = project.providers.gradleProperty('githubPackagesToken')
+                        .orElse(project.providers.environmentVariable('GITHUB_TOKEN')).orNull
+                }
             }
         }
     }
